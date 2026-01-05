@@ -17,23 +17,28 @@ const Browse = () => {
         }
     },[])
     return (
-        <div>
-            <Navbar />
-            <div className='max-w-7xl mx-auto my-10'>
-                <h1 className='font-bold text-xl my-10'>Search Results ({allJobs.length})</h1>
-                <div className='grid grid-cols-3 gap-4'>
-                    {
-                        allJobs.map((job) => {
-                            return (
-                                <Job key={job._id} job={job}/>
-                            )
-                        })
-                    }
-                </div>
+  <div>
+    <Navbar />
+    <div className="max-w-7xl mx-auto my-10 px-4">
+      {/* Heading */}
+      <h1 className="font-bold text-lg sm:text-xl my-6 sm:my-10 text-center sm:text-left">
+        Search Results ({allJobs.length})
+      </h1>
 
-            </div>
-        </div>
-    )
+      {/* Job Grid */}
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+        {allJobs.length > 0 ? (
+          allJobs.map((job) => <Job key={job._id} job={job} />)
+        ) : (
+          <p className="text-center text-gray-500 col-span-full">
+            No jobs found. Try adjusting your search.
+          </p>
+        )}
+      </div>
+    </div>
+  </div>
+);
+
 }
 
 export default Browse

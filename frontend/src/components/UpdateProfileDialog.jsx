@@ -69,88 +69,141 @@ const UpdateProfileDialog = ({ open, setOpen }) => {
 
 
     return (
-        <div>
-            <Dialog open={open}>
-                <DialogContent className="sm:max-w-[425px]" onInteractOutside={() => setOpen(false)}>
-                    <DialogHeader>
-                        <DialogTitle>Update Profile</DialogTitle>
+    <div>
+        <Dialog open={open}>
+            <DialogContent 
+                className="w-[95vw] max-w-[500px] max-h-[90vh] overflow-y-auto p-0"
+                onInteractOutside={() => setOpen(false)}
+            >
+                <div className="p-4 sm:p-6">
+                    <DialogHeader className="mb-4">
+                        <DialogTitle className="text-lg sm:text-xl">Update Profile</DialogTitle>
                     </DialogHeader>
-                    <form onSubmit={submitHandler}>
-                        <div className='grid gap-4 py-4'>
-                            <div className='grid grid-cols-4 items-center gap-4'>
-                                <Label htmlFor="name" className="text-right">Name</Label>
-                                <Input
-                                    id="name"
-                                    name="name"
-                                    type="text"
-                                    value={input.fullname}
-                                    onChange={changeEventHandler}
-                                    className="col-span-3"
-                                />
-                            </div>
-                            <div className='grid grid-cols-4 items-center gap-4'>
-                                <Label htmlFor="email" className="text-right">Email</Label>
-                                <Input
-                                    id="email"
-                                    name="email"
-                                    type="email"
-                                    value={input.email}
-                                    onChange={changeEventHandler}
-                                    className="col-span-3"
-                                />
-                            </div>
-                            <div className='grid grid-cols-4 items-center gap-4'>
-                                <Label htmlFor="number" className="text-right">Number</Label>
-                                <Input
-                                    id="number"
-                                    name="number"
-                                    value={input.phoneNumber}
-                                    onChange={changeEventHandler}
-                                    className="col-span-3"
-                                />
-                            </div>
-                            <div className='grid grid-cols-4 items-center gap-4'>
-                                <Label htmlFor="bio" className="text-right">Bio</Label>
-                                <Input
-                                    id="bio"
-                                    name="bio"
-                                    value={input.bio}
-                                    onChange={changeEventHandler}
-                                    className="col-span-3"
-                                />
-                            </div>
-                            <div className='grid grid-cols-4 items-center gap-4'>
-                                <Label htmlFor="skills" className="text-right">Skills</Label>
-                                <Input
-                                    id="skills"
-                                    name="skills"
-                                    value={input.skills}
-                                    onChange={changeEventHandler}
-                                    className="col-span-3"
-                                />
-                            </div>
-                            <div className='grid grid-cols-4 items-center gap-4'>
-                                <Label htmlFor="file" className="text-right">Resume</Label>
+                    
+                    <form onSubmit={submitHandler} className="space-y-4">
+                        {/* Name Field */}
+                        <div className='space-y-2'>
+                            <Label htmlFor="name" className="text-sm font-medium">Name</Label>
+                            <Input
+                                id="name"
+                                name="name"
+                                type="text"
+                                value={input.fullname}
+                                onChange={changeEventHandler}
+                                placeholder="Enter your full name"
+                                className="w-full"
+                            />
+                        </div>
+                        
+                        {/* Email Field */}
+                        <div className='space-y-2'>
+                            <Label htmlFor="email" className="text-sm font-medium">Email</Label>
+                            <Input
+                                id="email"
+                                name="email"
+                                type="email"
+                                value={input.email}
+                                onChange={changeEventHandler}
+                                placeholder="Enter your email address"
+                                className="w-full"
+                            />
+                        </div>
+                        
+                        {/* Phone Number Field */}
+                        <div className='space-y-2'>
+                            <Label htmlFor="number" className="text-sm font-medium">Phone Number</Label>
+                            <Input
+                                id="number"
+                                name="number"
+                                type="tel"
+                                value={input.phoneNumber}
+                                onChange={changeEventHandler}
+                                placeholder="Enter your phone number"
+                                className="w-full"
+                            />
+                        </div>
+                        
+                        {/* Bio Field */}
+                        <div className='space-y-2'>
+                            <Label htmlFor="bio" className="text-sm font-medium">Bio</Label>
+                            <textarea
+                                id="bio"
+                                name="bio"
+                                value={input.bio}
+                                onChange={changeEventHandler}
+                                placeholder="Tell us about yourself..."
+                                className="w-full min-h-[80px] px-3 py-2 text-sm border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent resize-vertical"
+                                rows="3"
+                            />
+                        </div>
+                        
+                        {/* Skills Field */}
+                        <div className='space-y-2'>
+                            <Label htmlFor="skills" className="text-sm font-medium">Skills</Label>
+                            <Input
+                                id="skills"
+                                name="skills"
+                                value={input.skills}
+                                onChange={changeEventHandler}
+                                placeholder="e.g., JavaScript, React, Node.js (comma separated)"
+                                className="w-full"
+                            />
+                            <p className="text-xs text-gray-500">Separate skills with commas</p>
+                        </div>
+                        
+                        {/* Resume Upload Field */}
+                        <div className='space-y-2'>
+                            <Label htmlFor="file" className="text-sm font-medium">Resume</Label>
+                            <div className="relative">
                                 <Input
                                     id="file"
                                     name="file"
                                     type="file"
-                                    accept="application/pdf"
+                                    accept=".pdf,.doc,.docx"
                                     onChange={fileChangeHandler}
-                                    className="col-span-3"
+                                    className="w-full cursor-pointer"
                                 />
+                                <p className="text-xs text-gray-500 mt-1">
+                                    Supported formats: PDF, DOC, DOCX (Max 5MB)
+                                </p>
                             </div>
                         </div>
-                        <DialogFooter>
-                            {
-                                loading ? <Button className="w-full my-4"> <Loader2 className='mr-2 h-4 w-4 animate-spin' /> Please wait </Button> : <Button type="submit" className="w-full my-4">Update</Button>
-                            }
+                        
+                        {/* Submit Button */}
+                        <DialogFooter className="pt-4 mt-6 border-t border-gray-200">
+                            <div className="flex flex-col sm:flex-row gap-2 w-full sm:w-auto">
+                                <Button
+                                    type="button"
+                                    variant="outline"
+                                    onClick={() => setOpen(false)}
+                                    className="w-full sm:w-auto order-2 sm:order-1"
+                                >
+                                    Cancel
+                                </Button>
+                                {loading ? (
+                                    <Button 
+                                        disabled 
+                                        className="w-full sm:w-auto order-1 sm:order-2"
+                                    >
+                                        <Loader2 className='mr-2 h-4 w-4 animate-spin' /> 
+                                        Updating...
+                                    </Button>
+                                ) : (
+                                    <Button 
+                                        type="submit" 
+                                        className="w-full sm:w-auto order-1 sm:order-2"
+                                    >
+                                        Update Profile
+                                    </Button>
+                                )}
+                            </div>
                         </DialogFooter>
                     </form>
-                </DialogContent>
-            </Dialog>
-        </div>
-    )
+                </div>
+            </DialogContent>
+        </Dialog>
+    </div>
+)
 }
 
 export default UpdateProfileDialog

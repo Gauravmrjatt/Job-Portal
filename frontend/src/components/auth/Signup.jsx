@@ -68,53 +68,65 @@ const Signup = () => {
         }
     },[])
     return (
-        <div>
-            <Navbar />
-            <div className='flex items-center justify-center max-w-7xl mx-auto'>
-                <form onSubmit={submitHandler} className='w-1/2 border border-gray-200 rounded-md p-4 my-10'>
-                    <h1 className='font-bold text-xl mb-5'>Sign Up</h1>
-                    <div className='my-2'>
+    <div>
+        <Navbar />
+        <div className='flex items-center justify-center min-h-screen px-4 py-8'>
+            <div className='w-full max-w-md mx-auto'>
+                <form onSubmit={submitHandler} className='w-full border border-gray-200 rounded-md p-6 shadow-lg bg-white'>
+                    <h1 className='font-bold text-xl mb-6 text-center'>Sign Up</h1>
+                    
+                    <div className='mb-4'>
                         <Label>Full Name</Label>
                         <Input
                             type="text"
                             value={input.fullname}
                             name="fullname"
                             onChange={changeEventHandler}
-                            placeholder="patel"
+                            placeholder="Enter your full name"
+                            className="mt-1"
                         />
                     </div>
-                    <div className='my-2'>
+                    
+                    <div className='mb-4'>
                         <Label>Email</Label>
                         <Input
                             type="email"
                             value={input.email}
                             name="email"
                             onChange={changeEventHandler}
-                            placeholder="patel@gmail.com"
+                            placeholder="Enter your email"
+                            className="mt-1"
                         />
                     </div>
-                    <div className='my-2'>
+                    
+                    <div className='mb-4'>
                         <Label>Phone Number</Label>
                         <Input
                             type="text"
                             value={input.phoneNumber}
                             name="phoneNumber"
                             onChange={changeEventHandler}
-                            placeholder="8080808080"
+                            placeholder="Enter phone number"
+                            className="mt-1"
                         />
                     </div>
-                    <div className='my-2'>
+                    
+                    <div className='mb-4'>
                         <Label>Password</Label>
                         <Input
                             type="password"
                             value={input.password}
                             name="password"
                             onChange={changeEventHandler}
-                            placeholder="patel@gmail.com"
+                            placeholder="Enter your password"
+                            className="mt-1"
                         />
                     </div>
-                    <div className='flex items-center justify-between'>
-                        <RadioGroup className="flex items-center gap-4 my-5">
+                    
+                    {/* Role Selection */}
+                    <div className='mb-4'>
+                        <Label className="block mb-2">Role</Label>
+                        <RadioGroup className="flex flex-col sm:flex-row gap-4">
                             <div className="flex items-center space-x-2">
                                 <Input
                                     type="radio"
@@ -122,9 +134,10 @@ const Signup = () => {
                                     value="student"
                                     checked={input.role === 'student'}
                                     onChange={changeEventHandler}
-                                    className="cursor-pointer"
+                                    className="cursor-pointer w-4 h-4"
+                                    id="student"
                                 />
-                                <Label htmlFor="r1">Student</Label>
+                                <Label htmlFor="student" className="cursor-pointer">Student</Label>
                             </div>
                             <div className="flex items-center space-x-2">
                                 <Input
@@ -133,29 +146,51 @@ const Signup = () => {
                                     value="recruiter"
                                     checked={input.role === 'recruiter'}
                                     onChange={changeEventHandler}
-                                    className="cursor-pointer"
+                                    className="cursor-pointer w-4 h-4"
+                                    id="recruiter"
                                 />
-                                <Label htmlFor="r2">Recruiter</Label>
+                                <Label htmlFor="recruiter" className="cursor-pointer">Recruiter</Label>
                             </div>
                         </RadioGroup>
-                        <div className='flex items-center gap-2'>
-                            <Label>Profile</Label>
-                            <Input
-                                accept="image/*"
-                                type="file"
-                                onChange={changeFileHandler}
-                                className="cursor-pointer"
-                            />
-                        </div>
                     </div>
-                    {
-                        loading ? <Button className="w-full my-4"> <Loader2 className='mr-2 h-4 w-4 animate-spin' /> Please wait </Button> : <Button type="submit" className="w-full my-4">Signup</Button>
-                    }
-                    <span className='text-sm'>Already have an account? <Link to="/login" className='text-blue-600'>Login</Link></span>
+                    
+                    {/* Profile Upload */}
+                    <div className='mb-6'>
+                        <Label className="block mb-2">Profile Picture</Label>
+                        <Input
+                            accept="image/*"
+                            type="file"
+                            onChange={changeFileHandler}
+                            className="cursor-pointer w-full"
+                        />
+                    </div>
+                    
+                    {/* Submit Button */}
+                    {loading ? (
+                        <Button disabled className="w-full mb-4 py-2">
+                            <Loader2 className='mr-2 h-4 w-4 animate-spin' /> 
+                            Please wait
+                        </Button>
+                    ) : (
+                        <Button type="submit" className="w-full mb-4 py-2">
+                            Sign Up
+                        </Button>
+                    )}
+                    
+                    {/* Login Link */}
+                    <div className='text-center'>
+                        <span className='text-sm text-gray-600'>
+                            Already have an account?{' '}
+                            <Link to="/login" className='text-blue-600 hover:text-blue-800 font-medium'>
+                                Login
+                            </Link>
+                        </span>
+                    </div>
                 </form>
             </div>
         </div>
-    )
+    </div>
+)
 }
 
 export default Signup
