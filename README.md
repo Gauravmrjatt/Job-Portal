@@ -1,40 +1,42 @@
 # Job Portal
 
-A job board with two audiences: candidates who browse and apply to roles, and admins who manage companies, postings and applicants.
+A job board with two audiences. Candidates browse and apply. Admins manage companies, postings and the applicants who come in.
 
-## Features
+## What it does
 
-- **Candidate side** — browse jobs, filter listings, open a job description, apply
-- **Admin side** — create and edit companies and job postings, review applicants per job
-- **Auth** — login and signup with `bcryptjs` hashing and cookie-based sessions
-- **API layer** — catch-all route handlers proxy to the backend service
-- **File uploads** — Cloudinary integration for company logos and résumés
-- **State** — Redux Toolkit for client state, Axios for requests
-- **UI** — Tailwind CSS + Radix primitives (avatar, dialog, popover, select, radio group, label)
+- Browse and filter jobs, open a description, apply
+- Admin console for companies and job postings
+- Review applicants per job
+- Login and signup with bcrypt hashing and cookie sessions
+- Catch all route handlers proxy through to the backend
+- Cloudinary for company logos and resumes
+- Redux Toolkit for client state, Axios for requests
+
+About 9,300 lines across 161 files: 8 models, 79 components.
 
 ## Stack
 
-Next.js (App Router) · React · Redux Toolkit · Axios · MongoDB · Cloudinary · Tailwind CSS · Radix UI
+Next.js (App Router), React, Redux Toolkit, Axios, MongoDB, Cloudinary, Tailwind CSS, Radix UI.
 
-## Structure
+## Layout
 
 ```
 app/
   admin/
-    companies/          list · create · edit
-    jobs/               list · create · applicants per job
+    companies/          list, create, edit
+    jobs/               list, create, applicants
   api/
-    application/        proxy route handlers
+    application/        proxy handlers
     company/
     job/
     user/
-  browse/               job browsing
-  description/[id]/     job detail
-  jobs/                 listings
+  browse/
+  description/[id]/
+  jobs/
   login/
 ```
 
-## Getting started
+## Run it
 
 ```bash
 npm install
@@ -48,13 +50,13 @@ npm run dev
 
 ## Scripts
 
-| Command | Description |
+| Command | What it does |
 |---|---|
-| `npm run dev` | Start the dev server |
+| `npm run dev` | Dev server |
 | `npm run build` | Production build |
-| `npm start` | Serve the production build |
+| `npm start` | Serve the build |
 | `npm run lint` | ESLint |
 
 ## Notes
 
-- The package name is still `nextjs-temp` from the starter — rename it to `job-portal` for clarity.
+The package name is still `nextjs-temp` from the starter. Renaming it to `job-portal` would save confusion later.
